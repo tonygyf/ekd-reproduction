@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "dataset": "CIFAR-100",
+  "train_images": 50000,
+  "test_images": 10000,
+  "teacher": "resnet32x4",
+  "student": "resnet8x4",
+  "seed": 42,
+  "epochs": 240,
+  "best_epoch": 222,
+  "teacher_top1": 79.53,
+  "best_student_top1": 77.21,
+  "best_student_top5": 94.14,
+  "last_student_top1": 77.11,
+  "last_student_top5": 93.98,
+  "paper_student_top1_mean_5_runs": 77.21,
+  "difference_percentage_points": 0.0,
+  "upstream_commit": "1b65073126c3babe554ad57e78096c436fb6183a",
+  "torch": "2.10.0a0+b4e4ee81d3.nv25.12",
+  "device": "NVIDIA RTX 6000D",
+  "parameter_counts": {
+    "resnet32x4": 7433860,
+    "resnet8x4": 1233540
+  },
+  "completed_at": "2026-10-29T19:18:27.369426+08:00",
+  "limitation": "One seed with compatible NGC runtime; not the five-run paper mean. CSV metrics rounded to 2 decimal places by upstream logger."
+}

@@ -1,6 +1,6 @@
 # EKD 复现工作区
 
-先复现 ICCV 2025 Evidential Knowledge Distillation 的 CIFAR-100 官方实验，暂不迁移 OCR。
+已完成 ICCV 2025 Evidential Knowledge Distillation 的 CIFAR-100 官方实验：ResNet32×4 → ResNet8×4，seed 42，240 轮。教师 Top-1 **79.53%**，最佳学生 **77.21%**，末轮学生 **77.11%**。单次结果与论文五次均值的报告值相同；尚未验证五种子统计。暂不迁移 OCR。
 
 从公开仓库重新开始：
 ```bash

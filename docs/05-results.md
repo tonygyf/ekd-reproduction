@@ -1,20 +1,41 @@
-# 运行结果
+# 最终复现结果
 
-## 已通过
-- Docker 中 GPU 矩阵乘法。
-- 官方入口 --help（完成最小导入修复后）。
-- 官方教师 checkpoint 结构验证和加载。
-- scripts/smoke.py：两类 KL 对照 PyTorch 分布、有限梯度、GPU 学生更新、教师参数与 BatchNorm 状态不变、checkpoint 重载一致。
-- 冒烟结构化结果：artifacts/smoke-results.json；输出日志：logs/smoke.log。
+2026-10-29，CIFAR-100，ResNet32×4 → ResNet8×4，seed=42，240 epochs。
 
-## 待完成
-原始数据校验、完整测试集教师评估、原 trainer 一轮训练/评估/保存冒烟、240 轮正式训练、独立重载最佳/末轮学生评估。
+| 模型 | 测试图数 | Top-1 | Top-5 |
+| --- | ---: | ---: | ---: |
+| 官方证据教师 | 10,000 | 79.53% | 94.86% |
+| 本轮最佳学生（epoch 222） | 10,000 | **77.21%** | **94.14%** |
+| 本轮末轮学生（epoch 240） | 10,000 | 77.11% | 93.98% |
 
-冒烟的随机输入只验证执行正确性，不能用于报告模型准确率或蒸馏收益。
+论文表1该组合的 EKD Top-1 为五次运行均值 77.21%；本次单 seed 最佳结果在报告精度上与之相同，差 0.00 个百分点。不能据此声称完成五种子统计复现。没有额外跑普通 KD 或独训学生，不能把本文引用的基线当作本轮实测。
 
-## 真实数据验证
-- CIFAR-100 原始包 MD5 校验成功。
-- 官方证据教师：10,000 张测试图 Top-1 **79.53%**，Top-5 **94.86%**，与论文表1教师一致。artifacts/teacher-eval.json。
-- 原入口 1 epoch：50,000 张训练图，10,000 张测试图，训练/验证/保存完整通过；Top-1 15.72%，仅作闭环检查。logs/student-one-epoch.log。
-- 正式训练：重新 seed=42 初始化学生，240 epochs，使用同一官方证据教师。启动命令记录在 README；输出 logs/train-student.log，checkpoint artifacts/runs/cifar100_baselines/resnet32x4_resnet8x4_seed42/。
-- artifacts/training-status.txt 记录 running/failed/completed；只有 latest 的 epoch=240 且全部参数有限、两次重载评估完成后才写 completed。
+## 完成证据
+
+- `artifacts/training-status.txt` 为 completed。
+- 全部 240 条 epoch 记录连续；latest checkpoint 的 epoch=240，所有模型参数/状态有限。
+- 最佳和末轮模型分别重新构造网络并重载 student checkpoint，在完整测试集评估。
+- 最佳重载 Top-1 与 best checkpoint 记录一致。
+- 纯模型 checkpoint：`artifacts/runs/cifar100_baselines/resnet32x4_resnet8x4_seed42/student_best` 和 `student_latest`。
+- 带优化器状态的恢复点：同目录 `latest`；保留每 40 轮 checkpoint。
+- 官方原始数据 MD5 已验证；官方教师重载精度与论文相同。
+- 冒烟通过：KL 公式对照、有限梯度、学生更新、教师参数与 BN 状态不变、保存重载一致、真实数据一轮原 trainer 运行。
+
+## 可公开结果
+
+- [结构化摘要](../results/summary.json)
+- [逐轮指标 CSV](../results/training-metrics.csv)：上游日志将数值舍入至小数点后两位。
+- [训练曲线 PNG](../results/learning-curves.png) / [SVG](../results/learning-curves.svg)
+- [教师评估](../results/teacher-eval.json)
+- [最佳学生评估](../results/student-best-eval.json)
+- [末轮学生评估](../results/student-last-eval.json)
+
+![训练曲线](../results/learning-curves.png)
+
+前 30 轮二阶权重 warmup；官方调度器使用 epoch > stage，学习率实际在 151、181、211 轮下降。高学习率阶段测试准确率明显波动，第 156 轮达 75.08%，最终收敛到上述结果。未因中途波动改算法或调参。
+
+## 环境与范围
+
+使用兼容 RTX 6000D 的 NGC 25.12 PyTorch 运行时，与作者 Python/PyTorch 版本不同，详见 02-environment.md。本轮复用作者训练好的证据教师，没有重新训练 240 轮教师；无 OCR 迁移、ImageNet 或五种子实验。
+
+完整日志和环境冻结仅保存在本地 logs/、artifacts/；公开仓库不上传数据、权重、PDF、checkpoint 或机器原始日志。来源和最小修复见 01-sources.md、03-issues.md。

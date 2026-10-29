@@ -1,0 +1,8 @@
+{
+  "model": "resnet8x4",
+  "checkpoint": "/workspace/artifacts/runs/cifar100_baselines/resnet32x4_resnet8x4_seed42/student_latest",
+  "test_images": 10000,
+  "top1": 77.11,
+  "top5": 93.98,
+  "prediction": "argmax(logits), equivalent to argmax(Dirichlet expectation) with shared scalar prior"
+}
