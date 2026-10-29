@@ -10,3 +10,15 @@
 - 提交身份使用 GitHub noreply 地址。
 
 补丁应用后子模块显示已修改是预期状态；子模块引用仍固定原始官方提交。
+
+## 远端发布
+
+公开仓库：https://github.com/tonygyf/ekd-reproduction
+
+用户在 GitHub 网页创建空 public 仓库，本机 SSH key 已认证为 tonygyf，origin 使用 `git@github.com:tonygyf/ekd-reproduction.git`。推送无需 GitHub CLI 登录。
+
+```bash
+git push -u origin main
+```
+
+SSH 认证负责推送；创建新仓库需网页或 GitHub API。本机无需为本次发布另存 API token。
