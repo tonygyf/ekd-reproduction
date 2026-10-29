@@ -1,0 +1,8 @@
+{
+  "model": "resnet32x4",
+  "checkpoint": "evidential_teacher/resnet32x4",
+  "test_images": 10000,
+  "top1": 79.53,
+  "top5": 94.86,
+  "prediction": "argmax(logits), equivalent to argmax(Dirichlet expectation) with shared scalar prior"
+}

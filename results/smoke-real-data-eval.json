@@ -1,0 +1,8 @@
+{
+  "model": "resnet8x4",
+  "checkpoint": "/workspace/artifacts/smoke/cifar100_baselines/real_data_smoke/student_best",
+  "test_images": 10000,
+  "top1": 15.72,
+  "top5": 40.64,
+  "prediction": "argmax(logits), equivalent to argmax(Dirichlet expectation) with shared scalar prior"
+}

@@ -1,0 +1,41 @@
+# Downloaded papers, datasets, weights, training output and raw machine logs
+/artifacts/
+/logs/
+/papers/
+/data/
+/output/
+/download_ckpts/
+/evidential_teacher/
+/evidential_teachers/
+
+# Python and development caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Local credentials and machine settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*token*
+.DS_Store
+
+# Model and dataset binaries
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.tar
+*.tar.gz
+*.part
+*.parquet

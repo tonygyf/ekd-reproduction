@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "device": "NVIDIA RTX 6000D",
+  "dirichlet_kl": 24.047180973954923,
+  "first_order_kl": 0.15017674218597876,
+  "gpu_losses": {
+    "loss_ce": 5.180127143859863,
+    "loss_ekd": 26.93383026123047
+  },
+  "teacher_frozen": true,
+  "student_updated": true,
+  "checkpoint_roundtrip": true
+}

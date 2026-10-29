@@ -1,0 +1,55 @@
+diff --git a/mdistiller/distillers/Evidential_Teacher.py b/mdistiller/distillers/Evidential_Teacher.py
+index 3062058..e3e52b1 100644
+--- a/mdistiller/distillers/Evidential_Teacher.py
++++ b/mdistiller/distillers/Evidential_Teacher.py
+@@ -33,7 +33,6 @@ class Evidential_Teacher(nn.Module):
+     def __init__(self, student, cfg):
+         super(Evidential_Teacher, self).__init__()
+         self.student = student
+-        self.efunction = cfg.TEACHER.CLF_TYPE
+ 
+         # The prior weight lamb can either be manually set or learned during training
+         if cfg.TEACHER.LAMB == 0.0:
+diff --git a/mdistiller/distillers/MLKD.py b/mdistiller/distillers/MLKD.py
+index 3eaf819..3086a7e 100644
+--- a/mdistiller/distillers/MLKD.py
++++ b/mdistiller/distillers/MLKD.py
+@@ -1,5 +1,4 @@
+ from termios import CEOL
+-from turtle import st
+ import torch
+ import torch.fft
+ import torch.nn as nn
+diff --git a/mdistiller/distillers/__init__.py b/mdistiller/distillers/__init__.py
+index 56cabd9..e49d15d 100644
+--- a/mdistiller/distillers/__init__.py
++++ b/mdistiller/distillers/__init__.py
+@@ -14,7 +14,7 @@ from .Sonly import Sonly
+ from .VID import VID
+ from .ReviewKD import ReviewKD
+ from .DKD import DKD
+-from .Evidential_Teacher import Teacher
++from .Evidential_Teacher import Evidential_Teacher
+ from .EKD import EKD
+ from .CAT_KD import CAT_KD
+ 
+@@ -37,6 +37,5 @@ distiller_dict = {
+     "DKD": DKD,
+     "Evidential_Teacher": Evidential_Teacher,
+     "EKD": EKD,
+-    "Monitor": Monitor,
+     "CAT_KD": CAT_KD,
+ }
+diff --git a/tools/train.py b/tools/train.py
+index c6f7f99..5177424 100644
+--- a/tools/train.py
++++ b/tools/train.py
+@@ -93,7 +93,7 @@ def main(cfg, resume, opts, seed):
+             model_student = imagenet_model_dict[cfg.DISTILLER.STUDENT](pretrained=False)
+         else:
+             print("Using Evdential Teacher")
+-            net, pretrain_model_path = cifar_model_dict[cfg.DISTILLER.TEACHER]
++            net, pretrain_model_path = cifar_emodel_dict[cfg.DISTILLER.TEACHER]
+             assert (
+                 pretrain_model_path is not None
+             ), "no pretrain model for teacher {}".format(cfg.DISTILLER.TEACHER)
