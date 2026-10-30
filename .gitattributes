@@ -3,5 +3,5 @@
 *.py text eol=lf
 *.patch text eol=lf
 *.png binary
-
 *.patch -whitespace
+archive/*.bin filter=lfs diff=lfs merge=lfs -text
