@@ -1,0 +1,60 @@
+{
+  "parts": [
+    {
+      "file": "evidence.tar.gz.part000.bin",
+      "bytes": 50331648,
+      "sha256": "201001167a6ec1c4ce8fae86d6082c3a65b152172f283c8173cffac29cb13675"
+    },
+    {
+      "file": "evidence.tar.gz.part001.bin",
+      "bytes": 50331648,
+      "sha256": "87586524e406b0bc3dfc1541a65b7699145c73500ead11484feb02039b6ab04f"
+    },
+    {
+      "file": "evidence.tar.gz.part002.bin",
+      "bytes": 50331648,
+      "sha256": "f0b6f4bda10643ea273770e794e0f57395dca7e851450aba9c07331b7cf215ce"
+    },
+    {
+      "file": "evidence.tar.gz.part003.bin",
+      "bytes": 50331648,
+      "sha256": "44ddb03268fd29934b3ff6a0a61a40c9f2634eab5e29f4fcea116efda9ba9b8e"
+    },
+    {
+      "file": "evidence.tar.gz.part004.bin",
+      "bytes": 50331648,
+      "sha256": "a733bf1ee5132a1c757f89260057783ac02b5aab42e5ea83e143552bf0486ad7"
+    },
+    {
+      "file": "evidence.tar.gz.part005.bin",
+      "bytes": 50331648,
+      "sha256": "cbe07be7c61fd68db6ea1a92ca184e170ec0cf277fab869c101564951d812cfe"
+    },
+    {
+      "file": "evidence.tar.gz.part006.bin",
+      "bytes": 50331648,
+      "sha256": "336de5e2627aaf01b6c77c52537de24b0470a8bca7a1fe9ad69779c2d4fb9d68"
+    },
+    {
+      "file": "evidence.tar.gz.part007.bin",
+      "bytes": 50331648,
+      "sha256": "89652aa125c16dae76cc93ab6c3303d812c52c72994911b663f5880473d6f7dd"
+    },
+    {
+      "file": "evidence.tar.gz.part008.bin",
+      "bytes": 50331648,
+      "sha256": "6a134c25fa05ee1910b2b27ce70500f47e029fa4c4b033e32283abcd73cf08d8"
+    },
+    {
+      "file": "evidence.tar.gz.part009.bin",
+      "bytes": 50331648,
+      "sha256": "5999edf98db730a5de7ee6efcda8525e55055ec125173d30b886dd586012d446"
+    },
+    {
+      "file": "evidence.tar.gz.part010.bin",
+      "bytes": 1375591,
+      "sha256": "959cb601b0c14683760e6ff9c352d65f21b2b42e7c4e5ab2caf623f471c06507"
+    }
+  ],
+  "archive_sha256": "586771b248e276f64fd4ebf6d0cb534859a85f38214b6548148ad080f0dd8666"
+}
